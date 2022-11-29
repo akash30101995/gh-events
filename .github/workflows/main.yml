@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: output event data
-        run: "${{ toJSON(github) }}"
+        run: echo "${{ toJSON(github) }}"
       - name: checkout to repo
         uses: actions/checkout@v3
       - name: Install dependency
