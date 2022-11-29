@@ -8,8 +8,7 @@ on:
       - main
       - 'dev-*' # dev-new,dev-this-is-new
       - 'feat/**'
-    paths:
-      - ".github/workflows/*"
+    
 jobs:
   event-check:
   runs-on: sirpi
