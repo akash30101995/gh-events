@@ -3,6 +3,13 @@ on:
   pull_request:
     types: [opened]
   workflow_dispatch:
+  push:
+    branches:
+      - main
+      - 'dev-*' # dev-new,dev-this-is-new
+      - 'feat/**'
+    paths:
+      - ".github/workflows/*"
 jobs:
   event-check:
   runs-on: sirpi
