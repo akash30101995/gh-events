@@ -1,18 +1,32 @@
-name: Event Demo1
+name: Event Demo
 on:
+  pull_request:
+    types:
+      - opened
+    branches:
+      - main
+      - "dev-**"
+      - "feat**"
+  workflow_dispatch:
+  push:
+    branches:
+     - main
+     - "dev-**"
+     - "feat**"
+      
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: output event of the data
-        run: "${{ toJSON(github) }}
-      - name: get code
-        run: actions/checkout@v3
-      - name: Install dependencies
+      - name: output event data
+        run: "${{ toJSON(github) }}"
+      - name: checkout to repo
+        uses: actions/checkout@v3
+      - name: Install dependency
         run: npm ci
-      - name: test the code
+      - name: test dependency
         run: npm test
-      - name: build
+      - name: build the code
         run: npm run build
-      - name: Deploy the code
-        run: echo "Deploy the code"
+      - name: deploy the code
+        run: echo "deploying code"
