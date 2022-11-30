@@ -22,7 +22,11 @@ jobs:
       script-file: ${{ steps.publish.outputs.script-file }}
     steps:
       - uses: actions/checkout@v3
-      
+      - name: caching
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: deps-node-modules-${{ hashfiles("**/package-lock.json") }}
       - name: install dependencies
         run: npm ci
         
