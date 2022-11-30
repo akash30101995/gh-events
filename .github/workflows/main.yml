@@ -13,6 +13,9 @@ jobs:
       - name: install dependencies
         run: npm ci
         
+      - name: error issue
+        run: npm init @eslint/config
+        
       - name: install eslint
         run: npm install -g eslint
         
