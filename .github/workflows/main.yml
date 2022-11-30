@@ -13,14 +13,25 @@ jobs:
       - name: install dependencies
         run: npm ci
         
-      - name: error issue
-        run:  npm run eslint . --ext .ts,.tsx
-        
-      - name: install eslint
-        run: npm install -g eslint
-        
-      - name: Lint code
-        run: npm run lint
-        
       - name: testing code
         run: npm run test
+  Build:
+    needs: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: install dependencies
+        run: npm ci
+        
+      - name: building code
+        run: npm run build
+        
+  deploy:
+    needs: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: deploy
+        run: echo "deploying"
+    
+    
