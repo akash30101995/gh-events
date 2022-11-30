@@ -6,7 +6,7 @@ on:
       
 jobs:
   Test:
-    runs-on: sirpi
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
         
