@@ -18,6 +18,8 @@ jobs:
   Build:
     needs: Test
     runs-on: ubuntu-latest
+    outputs:
+      script-file: ${{ steps.publish.outputs.script-file }}
     steps:
       - uses: actions/checkout@v3
       
@@ -27,6 +29,10 @@ jobs:
       - name: building code
         run: npm run build
         
+      - name: Pulish JS names
+        id: publish
+        run: find dist/assets/*.js -type f -execdir echo 'script-file={}' >> $GITHUB_OUTPUT ';'
+   
       - name: upload artifacts
         uses: actions/upload-artifact@v3
         with: 
@@ -46,6 +52,8 @@ jobs:
           name: dist-files
       - name: output content
         run: ls
+      - name: output filename
+        run: echo "${{ needs.build.outputs }}"
       - name: deploy
         run: echo "deploying"
     
