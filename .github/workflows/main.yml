@@ -14,7 +14,7 @@ jobs:
         run: npm ci
         
       - name: error issue
-        run: npm init @eslint/config
+        run:  npm run eslint . --ext .ts,.tsx
         
       - name: install eslint
         run: npm install -g eslint
